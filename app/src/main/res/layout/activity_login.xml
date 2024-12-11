@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/welcomeLottie"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="50dp"
+        app:lottie_rawRes="@raw/weather_login_lottie"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textColor="@color/primary_blue"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="to the most accurate weather app ever."
+        android:textColor="@color/primary_blue"
+        android:textSize="20dp"
+        android:layout_marginBottom="60dp"/>
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Username"
+        android:background="@drawable/outline_border_textfield"
+        android:layout_marginBottom="20dp"
+        android:padding="8dp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Password"
+        android:background="@drawable/outline_border_textfield"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textSize="16sp" />
+
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Login"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primary_blue"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/signUpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account yet? Sign Up Now"
+        android:textColor="@color/primary_blue"
+        android:paddingTop="16dp"
+        android:clickable="true"
+        android:focusable="true" />
+</LinearLayout>

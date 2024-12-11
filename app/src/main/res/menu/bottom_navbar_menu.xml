@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/weatherFragment"
+        app:destination="@id/weatherFragment"
+        android:title="Home"
+        android:icon="@drawable/outline_home_24" />
+
+    <item
+        android:id="@+id/profileFragment"
+        app:destination="@id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/outline_account_circle_24" />
+</menu>
+

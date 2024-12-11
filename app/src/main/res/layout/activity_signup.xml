@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_blue"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up Now"
+        android:textColor="@color/primary_blue"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="to know more about weather at your location."
+        android:textColor="@color/primary_blue"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="20dp"
+        android:layout_marginBottom="60dp"/>
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/outline_border_textfield"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Username" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/outline_border_textfield"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/ageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/outline_border_textfield"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Age"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/postcodeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/outline_border_textfield"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:hint="Postcode" />
+
+    <EditText
+        android:id="@+id/cityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/outline_border_textfield"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="16dp"
+        android:hint="City" />
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/primary_blue"
+        android:layout_marginHorizontal="16dp"
+        android:text="Signup" />
+</LinearLayout>
