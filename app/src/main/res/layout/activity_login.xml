@@ -42,15 +42,33 @@
         android:padding="8dp"
         android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/passwordEditText"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Password"
-        android:background="@drawable/outline_border_textfield"
-        android:inputType="textPassword"
-        android:padding="8dp"
-        android:textSize="16sp" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:background="@drawable/outline_border_textfield"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:layout_toLeftOf="@+id/eyeIcon" />
+
+        <ImageView
+            android:id="@+id/eyeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_disable_visibility_24"
+            android:contentDescription="Toggle password visibility" />
+    </RelativeLayout>
+
+
 
 
     <Button

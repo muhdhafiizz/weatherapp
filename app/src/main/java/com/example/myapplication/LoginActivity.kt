@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -44,6 +45,23 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
             }
         })
+
+
+
+        var isPasswordVisible = false
+
+        binding.eyeIcon.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            if (isPasswordVisible) {
+                binding.passwordEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.eyeIcon.setImageResource(R.drawable.ic_visibility_24) // Update icon for hidden password
+            } else {
+                binding.passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.eyeIcon.setImageResource(R.drawable.ic_disable_visibility_24) // Update icon for visible password
+            }
+            binding.passwordEditText.setSelection(binding.passwordEditText.text.length) // Maintain cursor position
+        }
+
 
 
         binding.loginButton.setOnClickListener {

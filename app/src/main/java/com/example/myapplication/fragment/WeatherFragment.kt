@@ -37,6 +37,19 @@ class WeatherFragment : Fragment() {
         binding = FragmentWeatherBinding.inflate(inflater, container, false)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            userViewModel.getUserDetails(loggedInUsername).observe(viewLifecycleOwner) { user ->
+                user?.city?.let { city ->
+                    fetchWeatherData(city)
+                    fetch3DaysForecast(city)
+                } ?: run {
+                    Toast.makeText(requireContext(), "City not found for user", Toast.LENGTH_SHORT).show()
+                }
+            }
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
+
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", AppCompatActivity.MODE_PRIVATE)
         loggedInUsername = sharedPreferences.getString("loggedInUsername", "") ?: ""
 
@@ -107,6 +120,8 @@ class WeatherFragment : Fragment() {
             }
         })
     }
+
+
 
     private fun updateUI(weather: WeatherData) {
         binding.cityName.text = weather.city_name
