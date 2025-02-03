@@ -6,4 +6,5 @@
     <color name="primary_blue">#007bff</color>
     <color name="secondary_blue">#f8f9fa</color>
     <color name="accent_color">#6c757d</color>
+    <color name="primary_green">#008000</color>
 </resources>

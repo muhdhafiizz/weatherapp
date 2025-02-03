@@ -23,6 +23,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.Locale
 
 class WeatherFragment : Fragment() {
 
@@ -66,7 +70,7 @@ class WeatherFragment : Fragment() {
     }
 
     private fun fetchWeatherData(city: String) {
-        val apiKey = "5daf6b85c08147438a0ecb71663ed5ab"
+        val apiKey = "51ef88e0e39e4c2ca0a99a9332a5e592"
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.weatherbit.io/v2.0/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -82,9 +86,12 @@ class WeatherFragment : Fragment() {
                     val weatherData = response.body()?.data?.first()
                     weatherData?.let { updateUI(it) }
                 } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown error"
                     Toast.makeText(context, "Failed to fetch weather data", Toast.LENGTH_SHORT).show()
+                    println("Error: $errorMessage")
                 }
             }
+
 
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
                 Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
@@ -93,7 +100,7 @@ class WeatherFragment : Fragment() {
     }
 
     private fun fetch3DaysForecast(city: String) {
-        val apiKey = "5daf6b85c08147438a0ecb71663ed5ab"
+        val apiKey = "51ef88e0e39e4c2ca0a99a9332a5e592"
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.weatherbit.io/v2.0/forecast/daily/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -110,8 +117,9 @@ class WeatherFragment : Fragment() {
                     if (forecastData.size >= 3) {
                         updateForecastUI(forecastData)
                     }
+                    println(forecastData)
                 } else {
-                    Toast.makeText(context, "Failed to fetch weather forecast", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Failed to fetch weather 3 days forecast", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -120,6 +128,33 @@ class WeatherFragment : Fragment() {
             }
         })
     }
+
+    private fun formatDateString(dateString: String): String {
+        return try {
+            val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
+            val date = LocalDate.parse(dateString, inputFormatter)
+            val day = date.dayOfMonth
+            val suffix = getDaySuffix(day)
+            val month = date.month.getDisplayName(TextStyle.FULL, Locale.getDefault())
+            val year = date.year
+
+            "$day$suffix $month $year"
+        } catch (e: Exception) {
+            dateString
+        }
+    }
+
+    private fun getDaySuffix(day: Int): String {
+        return when {
+            day in 11..13 -> "th"
+            day % 10 == 1 -> "st"
+            day % 10 == 2 -> "nd"
+            day % 10 == 3 -> "rd"
+            else -> "th"
+        }
+    }
+
+
 
 
 
@@ -138,17 +173,17 @@ class WeatherFragment : Fragment() {
         binding.forecastContainer.visibility = View.VISIBLE
 
         val day1 = forecastData[0]
-        binding.day1Date.text = day1.valid_date
+        binding.day1Date.text = formatDateString(day1.valid_date)
         binding.day1Temp.text = "${day1.temp}°C"
         Glide.with(this).load("https://www.weatherbit.io/static/img/icons/${day1.weather.icon}.png").into(binding.day1Icon)
 
         val day2 = forecastData[1]
-        binding.day2Date.text = day2.valid_date
+        binding.day2Date.text = formatDateString(day2.valid_date)
         binding.day2Temp.text = "${day2.temp}°C"
         Glide.with(this).load("https://www.weatherbit.io/static/img/icons/${day2.weather.icon}.png").into(binding.day2Icon)
 
         val day3 = forecastData[2]
-        binding.day3Date.text = day3.valid_date
+        binding.day3Date.text = formatDateString(day3.valid_date)
         binding.day3Temp.text = "${day3.temp}°C"
         Glide.with(this).load("https://www.weatherbit.io/static/img/icons/${day3.weather.icon}.png").into(binding.day3Icon)
     }

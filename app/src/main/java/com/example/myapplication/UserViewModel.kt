@@ -39,7 +39,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun updateUserDetails(username: String, password: String, age: Int, postcode: Int, city: String) {
         viewModelScope.launch {
-            // Call the UserDao method with individual parameters
             userDao.updateUser(username, password, age, postcode, city)
         }
     }
